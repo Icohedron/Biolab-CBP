@@ -1,0 +1,73 @@
+//// Teleporters (Two-Way) ////
+FUNC addTeleporter
+	summon ArmorStand |1| |2| |3| {CustomName:"|0|",CustomNameVisible:1b,Tags:["BiolabTeleporter","|0|1","|9|"],Marker:1b,Invulnerable:1b:,NoGravity:1b,Invisible:1b,PersistenceRequired:1b,Rotation:[|4|,0.0f,0.0f]}
+	summon ArmorStand |5| |6| |7| {CustomName:"|0|",CustomNameVisible:1b,Tags:["BiolabTeleporter","|0|2","|9|"],Marker:1b,Invulnerable:1b:,NoGravity:1b,Invisible:1b,PersistenceRequired:1b,Rotation:[|8|,0.0f,0.0f]}
+END
+
+FUNC enableTeleporters
+	addTeleporter(Blue_Outside;-116;20;-1193;90.0f;-87;44;-1276;180.0f;BiolabBlue)
+	addTeleporter(Blue_Teleporter_1;-128;20;-1195;-54.0f;-82;67;-1221;-45.0f;BiolabBlue)
+	addTeleporter(Blue_Teleporter_2;-128;20;-1191;-118.0f;-109;67;-1237;36.0f;BiolabBlue)
+	
+	addTeleporter(Red_Control_Room;-133;20;-1201;180.0f;-100;44;-1187;135.0f;BiolabRed)
+	addTeleporter(Red_Teleporter_1;-109;44;-1187;-135.0f;-151;67;-1197;-15.0f;BiolabRed)
+	addTeleporter(Red_Teleporter_2;-100;44;-1196;45.0f;-110;67;-1187;45.0f;BiolabRed)
+	
+	addTeleporter(Purple_Outside;-108;20;-1210;0.0f;-101;44;-1105;0.0f;BiolabPurple)
+	addTeleporter(Purple_Teleporter_1;-108;20;-1201;180.0f;-80;67;-1161;-36.0f;BiolabPurple)
+	
+	addTeleporter(Control_Point_D;-203;45;-1099;-90.0f;-200;44;-1158;180.0f;BiolabNeutral)
+	
+	activate(teleporters)
+END
+
+FUNC updateTeamTeleporter
+	@e[|0|1] scoreboard players tag @a[!InTeleporter,r=1,team=|1|] add Teleporting
+	@e[|0|1] tp @a[!InTeleporter,r=1,team=|1|] @e[|0|2]
+	@e[|0|2] scoreboard players tag @a[Teleporting] add InTeleporter
+	
+	@e[|0|2] scoreboard players tag @a[!InTeleporter,r=1,team=|1|] add Teleporting
+	@e[|0|2] tp @a[!InTeleporter,r=1,team=|1|] @e[|0|1]
+	@e[|0|1] scoreboard players tag @a[Teleporting] add InTeleporter
+END
+
+FUNC updateTeleporter
+	@e[|0|1] scoreboard players tag @a[!InTeleporter,r=1] add Teleporting
+	@e[|0|1] tp @a[!InTeleporter,r=1] @e[|0|2]
+	@e[|0|2] scoreboard players tag @a[Teleporting] add InTeleporter
+	
+	@e[|0|2] scoreboard players tag @a[!InTeleporter,r=1] add Teleporting
+	@e[|0|2] tp @a[!InTeleporter,r=1] @e[|0|1]
+	@e[|0|1] scoreboard players tag @a[Teleporting] add InTeleporter
+END
+
+:teleporters CLOCK 16 0 1
+updateTeamTeleporter(Blue_Outside;BiolabBlue)
+updateTeamTeleporter(Blue_Teleporter_1;BiolabBlue)
+updateTeamTeleporter(Blue_Teleporter_2;BiolabBlue)
+
+updateTeamTeleporter(Red_Control_Room;BiolabRed)
+updateTeamTeleporter(Red_Teleporter_1;BiolabRed)
+updateTeamTeleporter(Red_Teleporter_2;BiolabRed)
+
+updateTeamTeleporter(Purple_Outside;BiolabPurple)
+updateTeamTeleporter(Purple_Teleporter_1;BiolabPurple)
+
+updateTeleporter(Control_Point_D)
+
+@a[Teleporting] @e[BiolabTeleporter,c=1] playsound minecraft:entity.endermen.teleport voice @a ~ ~ ~
+@a[Teleporting] @e[BiolabTeleporter,c=1] scoreboard players tag @a[Teleporting] remove Teleporting
+
+@e[BiolabTeleporter] @e[BiolabBlue,r=1,c=1] particle reddust ~ ~1 ~ -1 0 1 -0.05
+@e[BiolabTeleporter] @e[BiolabRed,r=1,c=1] particle reddust ~ ~1 ~ 0 0 0 -0.05
+@e[BiolabTeleporter] @e[BiolabPurple,r=1,c=1] particle reddust ~ ~1 ~ 0 0 1 -0.05
+@e[BiolabTeleporter] @e[BiolabNeutral,r=1,c=1] particle reddust ~ ~1 ~ 0 1 1 -0.05
+
+@e[BiolabTeleporter] scoreboard players tag @a[r=2,rm=1] remove InTeleporter
+
+FUNC disableTeleporters
+	deactivate(teleporters)
+	kill @e[BiolabTeleporter]
+	scoreboard players tag * remove InTeleporter
+	scoreboard players tag * remove Teleporting
+END

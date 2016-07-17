@@ -1,0 +1,59 @@
+// Force Field Options
+DEFINE backtrackDistance 0.3
+
+//// Force Fields and Spawn Protection ////
+:forceFields CLOCK 16 0 1
+// Red Team
+particle reddust -104.0 46 -1186 2.5 3 0 0 50 None @a Force
+tp @a[x=-108,y=42,z=-1186,dx=7,dy=7,team=!BiolabRed,m=2] ~ ~ ~backtrackDistance
+particle reddust -104.0 46 -1197 2.5 3 0 0 50 None @a Force
+tp @a[x=-101,y=42,z=-1197,dx=-7,dy=7,team=!BiolabRed,m=2]  ~ ~ ~-backtrackDistance
+particle reddust -99 46 -1191.0 0 3 2.5 0 50 None @a Force
+tp @a[x=-99,y=42,z=-1188,dy=7,dz=-7,team=!BiolabRed,m=2] ~backtrackDistance ~ ~
+particle reddust -110 46 -1191.0 0 3 2.5 0 50 None @a Force
+tp @a[x=-110,y=42,z=-1195,dy=7,dz=7,team=!BiolabRed,m=2] ~-backtrackDistance ~ ~
+effect @e[x=-109,y=50,z=-1187,dx=9,dy=-8,dz=-9,team=BiolabRed] minecraft:resistance 1 5 true
+
+particle reddust -147 67 -1191 0 0.75 0.75 0 8 None @a Force
+tp @a[x=-147,y=66,z=-1190,dy=2,dz=-2,team=!BiolabRed,m=2] ~backtrackDistance ~ ~
+particle reddust -152 67 -1190 0 0.75 0.75 0 8 None @a Force
+tp @a[x=-152,y=66,z=-1191,dy=2,dz=2,team=!BiolabRed,m=2] ~-backtrackDistance ~ ~
+particle reddust -149.0 67 -1184 1 0.75 0 0 9 None @a Force
+tp @a[x=-151,y=66,z=-1184,dx=3,dy=2,team=!BiolabRed,m=2] ~ ~ ~backtrackDistance
+effect @e[x=-148,y=70,z=-1197,dx=-3,dy=-4,dz=12,team=BiolabRed] minecraft:resistance 1 5 true
+
+// Blue Team
+particle magicCrit -90 44 -1278 0 0.75 0.75 0 8 None @a Force
+tp @a[x=-90,y=43,z=-1279,dy=2,dz=2,team=!BiolabBlue,m=2] ~-backtrackDistance ~ ~
+particle magicCrit -88 44 -1280 0.75 0.75 0 0 8 None @a Force
+tp @a[x=-87,y=43,z=-1280,dx=-2,dy=2,team=!BiolabBlue,m=2] ~ ~ ~-backtrackDistance
+particle magicCrit -83 44 -1278 0 0.75 0.75 0 8 None @a Force
+tp @a[x=-83,y=43,z=-1277,dy=2,dz=-2,team=!BiolabBlue,m=2] ~backtrackDistance ~ ~
+effect @e[x=-84,y=43,z=-1276,dx=-5,dy=3,dz=-3,team=BiolabBlue] minecraft:resistance 1 5 true
+
+particle magicCrit -113 67 -1235 0 0.75 0.75 0 8 None @a Force
+tp @a[x=-113,y=66,z=-1236,dy=2,dz=2,team=!BiolabBlue,m=2] ~-backtrackDistance ~ ~
+particle magicCrit -110 67 -1231 0.75 0.75 0 0 8 None @a Force
+tp @a[x=-111,y=66,z=-1231,dx=2,dy=2,team=!BiolabBlue,m=2] ~ ~ ~backtrackDistance
+effect @e[x=-112,y=66,z=-1232,dx=3,dy=4,dz=-5,team=BiolabBlue] minecraft:resistance 1 5 true
+
+particle magicCrit -81 67 -1215 0.75 0.75 0 0 8 None @a Force
+tp @a[x=-76,y=66,z=-1219,dy=2,dz=-2,team=!BiolabBlue,m=2] ~backtrackDistance ~ ~
+particle magicCrit -76 67 -1220 0 0.75 0.75 0 8 None @a Force
+tp @a[x=-82,y=66,z=-1215,dx=2,dy=2,team=!BiolabBlue,m=2] ~ ~ ~backtrackDistance
+effect @e[x=-77,y=66,z=-1216,dx=-5,dy=4,dz=-5,team=BiolabBlue] minecraft:resistance 1 5 true
+
+// Purple Team
+particle dragonbreath -98 44 -1103 0 0.75 0.75 0 4 None @a Force
+tp @a[x=-98,y=43,z=-1102,dy=2,dz=-2,team=!BiolabPurple,m=2] ~backtrackDistance ~ ~
+particle dragonbreath -100 44 -1101 0.75 0.75 0 0 4 None @a Force
+tp @a[x=-101,y=43,z=-1101,dx=2,dy=2,team=!BiolabPurple,m=2] ~ ~ ~backtrackDistance
+particle dragonbreath -105 44 -1103 0 0.75 0.75 0 4 None @a Force
+tp @a[x=-105,y=43,z=-1104,dy=2,dz=2,team=!BiolabPurple,m=2] ~-backtrackDistance ~ ~
+effect @e[x=-104,y=46,z=-1102,dx=5,dy=-3,dz=-3,team=BiolabPurple] minecraft:resistance 1 5 true
+
+particle dragonbreath -77 67 -1155 0.75 0.75 0 0 4 None @a Force
+tp @a[x=-78,y=66,z=-1155,dx=2,dy=2,team=!BiolabPurple,m=2] ~ ~ ~backtrackDistance
+particle dragonbreath -75 67 -1159 0 0.75 0.75 0 4 None @a Force
+tp @a[x=-75,y=66,z=-1158,dy=2,dz=-2,team=!BiolabPurple,m=2] ~backtrackDistance ~ ~
+effect @e[x=-76,y=66,z=-1156,dx=-4,dy=3,dz=-5,team=BiolabPurple] minecraft:resistance 1 5 true
